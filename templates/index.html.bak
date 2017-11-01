@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html style="   height: 100%">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="{{session['refresh']}}" content="0; url=/">
+    <title>Virtual Line</title>
+  </head>
+  <body style="   background-color:grey; height: 100%;">
+    <div style="background-color:red; color:white;width:95%;height:50px;text-align: center;padding:10px ;margin: 0 auto">
+      <div style="text-align: center; width: 100%; margin: 0 auto">
+        <p>Virtual Line</p>
+      </div>
+    </div>
+    <div style="height: 100%; background-color:white; width:95%; margin: 0 auto; padding:10px">
+      <div style="height: 100%">
+        <p style="width: 221.5px; margin: 0px auto">Add to Line</p>
+        <form action="/virtual-line/add"> 
+          <table style="width: 100%; margin: 0px auto;border-collapse:collapse"
+
+            border="1">
+            <tbody>
+              <tr>
+                <td>Name:</td>
+                <td><input name="name" type="text"></td>
+              </tr>
+              <tr>
+                <td>Phone #:</td>
+                <td><input name="phone" type="text"></td>
+              </tr>
+              <tr>
+                <td>Age:</td>
+                <td><input name="age" value="2-6" type="radio">2-6<br>
+                  <input name="age" value="7-12" type="radio">7-12<br>
+                  <input name="age" value="13-18" type="radio">13-18<br>
+                  <input name="age" value="19+" type="radio">19+</td>
+              </tr>
+              <tr>
+                <td>Ability</td>
+                <td><input name="ability" value="Beg" type="radio">Beg<br>
+                  <input name="ability" value="Int" type="radio">Int<br>
+                  <input name="ability" value="Adv" type="radio">Adv</td>
+              </tr>
+              <tr>
+                <td><br>
+                </td>
+                <td><button>Submit</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+        <br>
+        <p style="width: 221.5px; margin: 0px auto">View Line</p>
+        {% for lp in lpList %} {% endfor %}
+        <table style="width: 100%; margin: 0px auto;border-collapse:collapse" border="1">
+          <tbody>
+            <tr style="height: 19px; background-color:{{textColor[lp]}}">
+              <form action="/virtual-line/expand"></form>
+              <td style="width: 6%;"><button>{{expandBList[lp]}}</button><br>
+                <input name="lp" value="{{lpList[lp]}}" hidden="" type="text"> </td>
+              <td>{{nameList[lp]}}<br>
+                <p {{hiddenList[lp]}}> {{phoneList[lp]}}<br>
+                  {{ageList[lp]}}<br>
+                  {{abilityList[lp]}}<br>
+                  {{waitTimeList[lp]}}<br>
+                  {{lastTextList[lp]}}</p>
+              </td>
+              <td style="width: 20%;">
+                <form action="/virtual-line/text"><button>Text </button><input
+
+                    name="lp" value="{{lpList[lp]}}" hidden="" type="text"></form>
+                <form action="/virtual-line/delete"><button> X </button><input
+
+                    name="lp" value="{{lpList[lp]}}" hidden="" type="text"></form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
